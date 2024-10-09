@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {IAuthForm} from '../shared/types/forms/auth-form.interface';
-import {ToastrService} from 'ngx-toastr';
+import {DialogService} from '../shared/services/dialog.service';
 
 @Component({
   selector: 'app-auth',
@@ -16,13 +16,13 @@ export class AuthComponent {
     password: new FormControl<string>('', Validators.required),
   });
 
-  constructor(private router: Router, private toastService: ToastrService) {
+  constructor(private router: Router, private dialogService: DialogService) {
   }
 
   async validateCredentials() {
     this.authForm.markAllAsTouched();
     if (!this.authForm.valid) {
-      this.toastService.error('completar los campos obligatorios');
+      await this.dialogService.informativeModal('completar los campos obligatorios', 'error');
       return;
     }
     const value = this.authForm.value;
@@ -31,7 +31,7 @@ export class AuthComponent {
       await this.router.navigate(['/projects']);
     } else {
       this.authForm.reset();
-      this.toastService.error('usuario/contraseña incorrectos');
+      await this.dialogService.informativeModal('usuario/contraseña incorrectos', 'error');
     }
   }
 

@@ -5,8 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { InformativeModalComponent } from './shared/components/informative-modal/informative-modal.component';
-import {ToastrModule} from 'ngx-toastr';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +16,7 @@ import {ToastrModule} from 'ngx-toastr';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    ToastrModule.forRoot({progressBar: true})
+    HttpClientModule,
   ],
   providers: [
     provideAnimationsAsync()

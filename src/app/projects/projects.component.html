@@ -1,1 +1,23 @@
-<p>projects works!</p>
+<div class="projects-container">
+  @if (isMobile ? showSidebar : true) {
+    <div class="project-list-section bg-zinc-100">
+      <div class="flex justify-between p-1">
+        <button class="p-1" type="button" (click)="createProject()" mat-button>NUEVO PROYECTO</button>
+        <button (click)="logout()" type="button" matTooltip="Cerrar sesión" mat-icon-button><mat-icon class="text-blue-400">logout</mat-icon></button>
+      </div>
+      <div class="flex overflow-x-hidden overflow-y-auto flex-col p-2">
+        @for (item of projects; track item.id) {
+          <app-card
+            [data]="item"
+            (delete)="deleteProject($event)"
+          ></app-card>
+        }
+      </div>
+    </div>
+  }
+  @if (router.url.includes('tasks')) {
+    <router-outlet></router-outlet>
+  } @else {
+    <p class="text-blue-700 mt-1">SELECCIONE UN PROYECTO</p>
+  }
+</div>
