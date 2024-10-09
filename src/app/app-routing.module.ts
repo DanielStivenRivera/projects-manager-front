@@ -9,6 +9,11 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'projects',
+    loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule),
+    canActivate: [authGuard]
+  },
+  {
     path: '**',
     redirectTo: '/auth',
     pathMatch: 'full'

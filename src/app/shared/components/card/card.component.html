@@ -1,0 +1,17 @@
+@if (data) {
+  <div class="mb-4 bg-gray-200 p-2 rounded-lg">
+    <h1 class="text-blue-700 font-semibold font-mono text-3xl">{{data.id + "-" + data.title}}</h1>
+    <mat-divider></mat-divider>
+    <p class="font-medium font-mono text-lg">{{data.description}}</p>
+    <mat-divider></mat-divider>
+    <div class="flex justify-end">
+      @if (!data.isTasks) {
+        <button mat-icon-button matTooltip="Ver tareas" (click)="open.emit(data.id)"><mat-icon class="text-blue-400">visibility</mat-icon></button>
+      }
+      <button mat-icon-button matTooltip="Eliminar" (click)="delete.emit(data.id)"><mat-icon class="text-red-500">delete</mat-icon></button>
+      @if(data.isTasks) {
+        <mat-checkbox [checked]="data.state" (click)="changeState.emit(data.id)"></mat-checkbox>
+      }
+    </div>
+  </div>
+}

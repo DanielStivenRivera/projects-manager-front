@@ -1,1 +1,7 @@
-<p>informative-modal works!</p>
+<div class="grid-cols-12 grid rounded-b-xl bg-gray-200 p-4">
+  <div class="grid grid-cols-10 col-span-11">
+    <mat-icon class="col-span-1" [class]="data.type === 'error' ? 'text-red-500' : 'text-blue-400'">{{data.type === 'error' ? 'cancel' : 'check_circle'}}</mat-icon>
+    <p class="col-span-8 font-medium font-mono">{{data.message}}</p>
+  </div>
+  <mat-icon class="col-span-1 cursor-pointer text-blue-400" (click)="dialogRef.close()">close</mat-icon>
+</div>
