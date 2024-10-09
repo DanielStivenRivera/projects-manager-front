@@ -1,0 +1,16 @@
+<section class="min-h-screen flex items-center justify-center">
+  <div class="max-w-screen-sm w-[90%] p-4 bg-slate-200 rounded-lg flex justify-center flex-col">
+    <h1 class="font-semibold font-mono text-blue-700 text-xl text-center mb-2">TODO APP</h1>
+    <form class="flex flex-col justify-center" [autocomplete]="false" [formGroup]="authForm" (submit)="validateCredentials()">
+      <mat-form-field>
+        <mat-label>USUARIO</mat-label>
+        <input matInput formControlName="user">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>CONTRASEÑA</mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+      <button type="submit" mat-button class="w-6/12 ml-auto mr-auto max-v-5">INICIAR SESIÓN</button>
+    </form>
+  </div>
+</section>
