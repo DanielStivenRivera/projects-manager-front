@@ -5,7 +5,13 @@ import {NgModule} from '@angular/core';
 const routes: Route[] = [
   {
     path: '',
-    component: ProjectsComponent
+    component: ProjectsComponent,
+    children: [
+      {
+        path: ':id/tasks',
+        loadChildren: () => import('../tasks/tasks.module').then(m => m.TasksModule)
+      }
+    ]
   },
   {
     path: '**',

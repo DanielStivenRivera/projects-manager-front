@@ -7,6 +7,7 @@ import {IProjectCreate} from '../types/services/projects.interface';
 import {CreationModalComponent} from '../components/creation-modal/creation-modal.component';
 import {IInterrogativeModalInterface} from '../types/components/interogative-modal.interface';
 import {InterrogativeModalComponent} from '../components/interrogative-modal/interrogative-modal.component';
+import {ITask} from '../types/services/task.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -32,11 +33,14 @@ export class DialogService {
     await lastValueFrom(dialog.afterClosed());
   }
 
-  async openCreationModal(title: string): Promise<IProjectCreate | undefined> {
+  async openCreationModal(title: string, data?: ITask): Promise<IProjectCreate | undefined> {
     const dialog = this.dialog.open(CreationModalComponent, {
       width: '90%',
       maxWidth: '500px',
-      data: title,
+      data: {
+        title,
+        data
+      },
       height: 'auto',
       panelClass: 'custom-dialog-background'
     });

@@ -9,7 +9,7 @@ import {ICard} from '../shared/types/components/card.interface';
 })
 export class ProjectsService {
 
-  _projects: ICard[] = [];
+  _projects: ICard[];
 
   private lastId = 11;
 
@@ -21,14 +21,15 @@ export class ProjectsService {
   }
 
   async getAllProjects() {
-    if (this._projects.length === 0) {
+    if (!this._projects) {
       const data = await lastValueFrom(this.http.get<IProjectServerResponse[]>(this.url));
       this._projects = data.map(item => {
         return {
           id: item.id,
           title: item.name,
           description: item.email,
-          isTasks: false
+          isTasks: false,
+          userId: -1,
         }
       });
     }
@@ -37,11 +38,11 @@ export class ProjectsService {
 
   async createProject(project: IProjectCreate) {
     const data = await lastValueFrom(this.http.post<IProject>(this.url, project));
-    this._projects.push({id: this.lastId++, description: data.description, title: data.title, isTasks: false});
+    this._projects.push({id: this.lastId++, description: data.description, title: data.title, isTasks: false, userId: -1});
   }
 
   async deleteProject(id: number) {
-    //await lastValueFrom(this.http.delete(`https://jsonplaceholder.typicode.com/projects/${id}`));
+    await lastValueFrom(this.http.delete(`${this.url}/${id}`));
     const itemId = this._projects.findIndex(project => project.id === id);
     if (itemId === -1) {
       throw Error(`Project with id ${id} not found`);
@@ -49,5 +50,22 @@ export class ProjectsService {
     this._projects.splice(itemId, 1);
   }
 
+  async getById(id: number) {
+    if (!this._projects) {
+      await this.getAllProjects();
+    }
+    return this._projects.find(project => project.id === id);
+  }
+
+  async updateProject(project: IProjectCreate, id: number) {
+    const response = await lastValueFrom(this.http.patch<IProject>(`${this.url}/${id}`, project));
+    const item = this._projects.find(project => project.id === id);
+    if (item) {
+      item.description = response.description;
+      item.title = response.title;
+    } else {
+      throw Error(`Project with id ${id} not found`);
+    }
+  }
 }
 

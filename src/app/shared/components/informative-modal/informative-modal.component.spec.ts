@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { InformativeModalComponent } from './informative-modal.component';
+import {InformativeModalComponent} from './informative-modal.component';
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 
 describe('InformativeModalComponent', () => {
   let component: InformativeModalComponent;
@@ -8,9 +9,13 @@ describe('InformativeModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [InformativeModalComponent]
+      imports: [InformativeModalComponent, MatDialogModule],
+      providers: [
+        {provide: MatDialogRef, useValue: {disableClose: false}},
+        {provide: MAT_DIALOG_DATA, useValue: {message: 'mensaje de error', type: 'error '}}
+      ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(InformativeModalComponent);
     component = fixture.componentInstance;

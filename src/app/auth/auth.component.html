@@ -4,11 +4,11 @@
     <form class="flex flex-col justify-center" [autocomplete]="false" [formGroup]="authForm" (submit)="validateCredentials()">
       <mat-form-field>
         <mat-label>USUARIO</mat-label>
-        <input matInput formControlName="user">
+        <input matInput formControlName="user" data-test="user">
       </mat-form-field>
       <mat-form-field>
         <mat-label>CONTRASEÑA</mat-label>
-        <input matInput type="password" formControlName="password">
+        <input matInput type="password" formControlName="password" data-test="password">
       </mat-form-field>
       <button type="submit" mat-button class="w-6/12 ml-auto mr-auto max-v-5">INICIAR SESIÓN</button>
     </form>

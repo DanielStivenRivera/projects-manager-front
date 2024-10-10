@@ -1,23 +1,29 @@
 <div class="projects-container">
   @if (isMobile ? showSidebar : true) {
-    <div class="project-list-section bg-zinc-100">
+    <div class="project-list-section bg-zinc-200">
       <div class="flex justify-between p-1">
-        <button class="p-1" type="button" (click)="createProject()" mat-button>NUEVO PROYECTO</button>
+        <button class="p-1" type="button" (click)="openCreationModal()" mat-button>NUEVO PROYECTO</button>
         <button (click)="logout()" type="button" matTooltip="Cerrar sesión" mat-icon-button><mat-icon class="text-blue-400">logout</mat-icon></button>
       </div>
       <div class="flex overflow-x-hidden overflow-y-auto flex-col p-2">
         @for (item of projects; track item.id) {
           <app-card
             [data]="item"
-            (delete)="deleteProject($event)"
+            (action)="cardActions($event)"
           ></app-card>
         }
       </div>
     </div>
   }
-  @if (router.url.includes('tasks')) {
-    <router-outlet></router-outlet>
-  } @else {
-    <p class="text-blue-700 mt-1">SELECCIONE UN PROYECTO</p>
-  }
+  <div class="tasks-section">
+    @if (router.url.includes('tasks')) {
+      <mat-icon class="mt-2 text-blue-400 arrow-back cursor-pointer" (click)="goToProjects()">arrow_back</mat-icon>
+      <router-outlet></router-outlet>
+    } @else {
+      <div></div>
+      <div class="flex height-100">
+        <p class="text-blue-700 mt-1 w-full items-center justify-center flex font-bold font-sans text-2xl">SELECCIONE UN PROYECTO</p>
+      </div>
+    }
+  </div>
 </div>

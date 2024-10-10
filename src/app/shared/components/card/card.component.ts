@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ICard} from '../../types/components/card.interface';
+import {CardEvent, ICard} from '../../types/components/card.interface';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatIconModule} from '@angular/material/icon';
@@ -25,12 +25,6 @@ export class CardComponent {
   data: ICard;
 
   @Output()
-  changeState: EventEmitter<number> = new EventEmitter<number>();
-
-  @Output()
-  open: EventEmitter<number> = new EventEmitter<number>();
-
-  @Output()
-  delete: EventEmitter<number> = new EventEmitter<number>();
+  action: EventEmitter<CardEvent> = new EventEmitter<CardEvent>();
 
 }
