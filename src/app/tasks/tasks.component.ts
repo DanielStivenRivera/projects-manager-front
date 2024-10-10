@@ -40,9 +40,11 @@ export class TasksComponent implements OnInit {
         this.projectId = data.id;
       } else {
         await this.router.navigateByUrl(`/projects`);
+        return;
       }
     } else {
       await this.router.navigateByUrl(`/projects`);
+      return;
     }
     await this.getTasks();
   }
