@@ -35,7 +35,6 @@ export class CreationModalComponent implements OnInit {
 
   ngOnInit() {
     this.initializeForm();
-    console.log(this.creationForm)
     this.dialogRef.disableClose = true;
     if (this.data.data) {
       this.creationForm.patchValue({

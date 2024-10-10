@@ -7,11 +7,11 @@
     <form class="flex-col flex" [formGroup]="creationForm" autocomplete="off">
       <mat-form-field >
         <mat-label>Título</mat-label>
-        <input matInput formControlName="title">
+        <input matInput formControlName="title" data-test="title">
       </mat-form-field>
       <mat-form-field>
         <mat-label>Descripción</mat-label>
-        <textarea class="resize-none" matInput formControlName="description" rows="5"></textarea>
+        <textarea class="resize-none" matInput formControlName="description" data-test="description" rows="5"></textarea>
       </mat-form-field>
       @if (data.data?.isTasks) {
           <div class="flex items-center">
