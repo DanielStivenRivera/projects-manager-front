@@ -23,7 +23,6 @@ export class ProjectsComponent implements OnInit {
     public router: Router,
     private projectService: ProjectsService,
     private dialogService: DialogService,
-    private route: ActivatedRoute,
   ) {
   }
 
@@ -100,7 +99,7 @@ export class ProjectsComponent implements OnInit {
         await this.dialogService.informativeModal(`El proyecto ha sido ${id ? 'editado' : 'creado'} correctamente`, 'success');
       }
     } catch (e) {
-      await this.dialogService.informativeModal('Error al crear proyecto', 'error');
+      await this.dialogService.informativeModal(`Error al ${id ? 'editar' : 'crear'} proyecto`, 'error');
     }
 
   }
