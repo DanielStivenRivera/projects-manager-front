@@ -8,6 +8,8 @@
       <app-card [data]="item"
                 (action)="cardActions($event)"
       ></app-card>
+    } @empty {
+      <p class="font-bold text-xl text-blue-700">Lista de tareas vacía</p>
     }
   </div>
 </div>

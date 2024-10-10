@@ -21,7 +21,7 @@ export class ProjectsService {
   }
 
   async getAllProjects() {
-    if (!this._projects) {
+    if (!Array.isArray(this._projects)) {
       const data = await lastValueFrom(this.http.get<IProjectServerResponse[]>(this.url));
       this._projects = data.map(item => {
         return {

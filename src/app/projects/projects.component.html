@@ -11,6 +11,8 @@
             [data]="item"
             (action)="cardActions($event)"
           ></app-card>
+        } @empty {
+          <p class="font-bold text-xl text-blue-700">Lista de proyectos vacía</p>
         }
       </div>
     </div>
